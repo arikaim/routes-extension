@@ -1,13 +1,13 @@
 {
-    "title": "Provider",
+    "title": "Route Details",
     "labels": {    
         "name": "Name",
-        "data": "Data",
-        "details": "Details",
-        "title": "Title",
-        "types": "Content Types",
-        "category": "Category",
+        "uuid": "Uuid",
+        "status": "Status",
+        "method": "Method",
+        "pattern": "Pattern",
+        "extension": "Extension",
         "handler": "Handler",
-        "total": "Total Items"                   
+        "auth": "Auth"                   
     }
 }

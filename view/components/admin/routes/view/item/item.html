@@ -1,10 +1,21 @@
-<div class="item" id="row_{{ provider.name }}">
-    <div class="content">                      
-        <div class="header">
-            <i class="icon blue angle right"></i>                          
-            <a class="link provider-details" content-povider="{{ provider.name }}">
-                {{ provider.title|default(provider.name) }}  
-            </a>                        
-        </div>                      
-    </div>     
-</div>
+<tr id="row_{{ route.name }}">
+    <td class="one wide">
+        <button class="ui mini basic icon button route-details" uuid="{{ route.uuid }}">
+            <i class="info icon"></i>
+        </button>
+    </td>
+    <td class="one wide">
+        {{ route.status }}
+    </td>
+    <td class="two wide">
+        {{ component('components:labels.route-type',{ type: route.type, class: 'basic' }) }}         
+    </td>
+    <td class="one wide">
+        <div class="ui basic label">
+            {{ route.method }} 
+        </div> 
+    </td>
+    <td>                                                     
+        {{ route.pattern }}                                                      
+    </td>     
+</tr>

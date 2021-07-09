@@ -1,9 +1,9 @@
-## Arikaim CMS Routes manager Extension
+## Arikaim CMS routes and middleware manager extension
 ![version: 1.0.0](https://img.shields.io/github/release/arikaim/routes-extension.svg)
 ![license: GPL3](https://img.shields.io/badge/License-GPLv3-blue.svg)
 
 
-Arikaim CMS Routes manager Extension
+Arikaim CMS routes and middleware manager extension
 
 
 #### Requirements 

@@ -1,5 +1,7 @@
 {
-    "title": "Content Providers",
-    "labels": {       
+    "title": "Routes",
+    "labels": {
+        "status": "Status",
+        "type": "Type"       
     }
 }

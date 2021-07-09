@@ -24,4 +24,13 @@ class Routes extends Extension
     public function install()
     {         
     }   
+
+    /**
+     * UnInstall extension
+     *
+     * @return void
+    */
+    public function unInstall()
+    {  
+    }
 }

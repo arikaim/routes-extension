@@ -6,31 +6,32 @@
  */
 'use strict';
 
-function ContentProvidersView() {
+function RoutesView() {
     var self = this;
 
-    this.init = function() {     
+    this.init = function() {  
+        $('.status-filter').dropdown({});
     };
 
     this.initRows = function() {
-        arikaim.ui.button('.provider-details',function(element) {
-            var name = $(element).attr('content-povider');            
-            self.loadDetails(name);
+        arikaim.ui.button('.route-details',function(element) {
+            var uuid = $(element).attr('uuid');            
+            self.loadDetails(uuid);
         });
     };
 
-    this.loadDetails = function(name) {    
+    this.loadDetails = function(uuid) {    
         return arikaim.page.loadContent({
             id: 'provider_details',           
-            component: 'content::admin.providers.details',
-            params: { provider_name: name }            
+            component: 'routes::admin.routes.details',
+            params: { uuid: uuid }            
         });  
     }
 }
 
-var contentProvidersView = createObject(ContentProvidersView,ControlPanelView);
+var routesView = createObject(RoutesView,ControlPanelView);
 
 arikaim.component.onLoaded(function() {
-    contentProvidersView.init();
-    contentProvidersView.initRows();
+    routesView.init();
+    routesView.initRows();
 });
