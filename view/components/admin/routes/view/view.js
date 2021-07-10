@@ -18,11 +18,17 @@ function RoutesView() {
             var uuid = $(element).attr('uuid');            
             self.loadDetails(uuid);
         });
+        $('.status-dropdown').dropdown({
+            onChange: function(value) {               
+                var uuid = $(this).attr('uuid');
+                usersAdmin.setStatus(uuid,value);
+            }
+        });
     };
 
     this.loadDetails = function(uuid) {    
         return arikaim.page.loadContent({
-            id: 'provider_details',           
+            id: 'route_details',           
             component: 'routes::admin.routes.details',
             params: { uuid: uuid }            
         });  

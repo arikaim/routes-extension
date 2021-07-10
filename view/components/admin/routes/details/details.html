@@ -1,8 +1,8 @@
-{% set route = service('routes').getDetails(uuid) %}
-{{ component('semantic~segment-title',{ title: title }) }}
-<div class="mt-4">   
-    <h4>{{ labels.details }}</h4>
-    <table class="ui very basic definition table mini">
+{% set route = service('routes').getRouteDetails(uuid) %}
+{% set auth_names = (route.auth is not empty) ? service('access').getAuthNames(route.auth) : '' %}
+{{ component('semantic~segment-title',{ title: title, icon: 'info' }) }}
+<div class="mt-4">       
+    <table class="ui very basic definition table small">
         <thead>
             <tr>
                 <th class="two wide"></th>
@@ -11,21 +11,80 @@
         </thead>
         <tbody>
             <tr>
+                <td class="right aligned">{{ labels.uuid }}</td>
+                <td>{{ route.uuid }}</td>
+            </tr> 
+            <tr>
+                <td class="right aligned">{{ labels.status }}</td>
+                <td>
+                    {{ component('components:status.icon',{ status: route.status }) }}     
+                </td>
+            </tr>      
+            {% if route.name is not empty %}     
+            <tr>
                 <td class="right aligned">{{ labels.name }}</td>
-                <td>{{ provider.getProviderName() }}</td>
+                <td>{{ route.name }}</td>
+            </tr>  
+            {% endif %}
+            <tr>
+                <td class="right aligned">{{ labels.type }}</td>
+                <td>
+                    {{ component('components:labels.route-type',{ type: route.type, class: 'basic' }) }}         
+                </td>
+            </tr>  
+            <tr>
+                <td class="right aligned">{{ labels.method }}</td>
+                <td>{{ route.method }}</td>
             </tr>   
             <tr>
-                <td class="right aligned">{{ labels.title }}</td>
-                <td>{{ provider.getProviderTitle() }}</td>
-            </tr>   
-            <tr>
-                <td class="right aligned">{{ labels.category }}</td>
-                <td>{{ provider.getProviderCategory() }}</td>
+                <td class="right aligned">{{ labels.pattern }}</td>
+                <td>{{ route.pattern }}</td>
             </tr>   
             <tr>
                 <td class="right aligned">{{ labels.handler }}</td>
-                <td>{{ provider.getClass() }}</td>
-            </tr>           
+                <td>{{ route.handler_class }} : {{ route.handler_method }}</td>
+            </tr>  
+            <tr>
+                <td class="right aligned">{{ labels.extension }}</td>
+                <td>{{ route.extension_name }}</td>
+            </tr>  
+            {% if route.redirect_url is not empty %}      
+            <tr>
+                <td class="right aligned">{{ labels.redirect }}</td>
+                <td>{{ route.redirect_url }}</td>
+            </tr>   
+            {% endif %}
+            <tr>
+                <td class="right aligned">{{ labels.auth }}</td>
+                <td>                  
+                    {% if auth_names is iterable %}
+                        {% for item in auth_names %}
+                            <div class="ui tiny primary basic label">{{ item }}</div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="ui primary basic label">{{ auth_names|default('none') }}</div>
+                    {% endif %}     
+                </td>
+            </tr>   
+            {% if route.middlewares is not empty %}     
+            <tr>
+                <td class="right aligned">{{ labels.middleware }}</td>
+                <td>
+                    {% set middlewares = route.middlewares|jsonDecode(false) %}
+                    {% for middleware in middlewares %}
+                        <div class="ui basic horizontal label" title="{{ labels.middleware }}">                    
+                            <span class="ui text grey">{{ middleware|baseClass }}</span>
+                        </div>
+                    {% endfor %}                     
+                </td>
+            </tr> 
+            {% endif %}
+            {% if route.page_name is not empty %}   
+            <tr>
+                <td class="right aligned">{{ labels.page }}</td>
+                <td>{{ route.page_name }}</td>
+            </tr> 
+            {% endif %}
         </tbody>  
     </table>         
 </div>    

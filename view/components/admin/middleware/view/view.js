@@ -6,7 +6,7 @@
  */
 'use strict';
 
-function ContentTypesView() {
+function MiddlewareView() {
     var self = this;
 
     this.init = function() {     
@@ -14,23 +14,14 @@ function ContentTypesView() {
 
     this.initRows = function() {
         arikaim.ui.button('.content-type-details',function(element) {
-            var name = $(element).attr('content-type');            
-            self.loadDetails(name);
+           
         });
-    };
-
-    this.loadDetails = function(name) {  
-        return arikaim.page.loadContent({
-            id: 'content_type_details',           
-            component: 'content::admin.types.details',
-            params: { content_type: name }            
-        });  
-    }
+    };    
 }
 
-var contentTypesView = createObject(ContentTypesView,ControlPanelView);
+var middlewareView = MiddlewareView(MiddlewareView,ControlPanelView);
 
 arikaim.component.onLoaded(function() {
-    contentTypesView.init();
-    contentTypesView.initRows();
+    middlewareView.init();
+    middlewareView.initRows();
 });

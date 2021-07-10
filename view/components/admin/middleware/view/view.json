@@ -1,5 +1,7 @@
 {
     "title": "Content Providers",
-    "labels": {       
+    "labels": {   
+        "global": "Global",
+        "packages": "Middleware Packages"    
     }
 }

@@ -4,8 +4,8 @@
             <i class="info icon"></i>
         </button>
     </td>
-    <td class="one wide">
-        {{ route.status }}
+    <td class="two wide">       
+        {{ component('components:status.dropdown',{ status: route.status, uuid: item.uuid }) }} 
     </td>
     <td class="two wide">
         {{ component('components:labels.route-type',{ type: route.type, class: 'basic' }) }}         

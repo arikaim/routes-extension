@@ -1,7 +1,3 @@
-
-{% set types = service('content').typeRegistry().getContentTypes() %}
-{% set items = paginate(types,'content.types') %}
-{% set items = items.getItems() %}
 {% if items|length == 0 %}
     <div class="item">
         {{ labels.empty }}
@@ -9,5 +5,5 @@
 {% endif %}
 
 {% for item in items %}
-    {{ component('content::admin.types.view.item',{ content_type: item }) }}   
+   
 {% endfor %}
