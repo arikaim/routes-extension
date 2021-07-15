@@ -1,0 +1,19 @@
+{
+    "name": "arikaim/routes-extension",
+    "description": "Arikaim CMS routes and middleware manager extension",
+    "keywords": ["Extension", "Arikaim CMS Routes extension"],
+    "type": "arikaim-extension",
+    "license": "GPL-3.0-or-later",
+    "authors": [{
+        "name": "Konstantin Atanasov",
+        "email": "info@arikaim.com",
+        "homepage": "http://arikaim.com"
+    }],
+    "require": {
+        "php": ">=7.2",
+        "arikaim/installer": "*"
+    },
+    "extra": {
+        "path": "routes"
+    }
+}

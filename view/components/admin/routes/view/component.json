@@ -1,4 +1,10 @@
 {
+    "include": {
+        "js": [
+            "components:search",      
+            "routes::admin.routes"           
+        ]
+    },
     "access": {
         "auth": "session",
         "permission": "ControlPanel:full",

@@ -2,6 +2,7 @@
     "title": "Routes",
     "labels": {
         "status": "Status",
-        "type": "Type"       
+        "type": "Type",
+        "extension": "Extension"       
     }
 }

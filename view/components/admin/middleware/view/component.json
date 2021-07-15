@@ -1,4 +1,9 @@
 {
+    "include": {
+        "js": [          
+            "routes::admin.middleware"           
+        ]
+    },
     "access": {
         "auth": "session",
         "permission": "ControlPanel:full",

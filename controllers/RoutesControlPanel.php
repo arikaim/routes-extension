@@ -9,7 +9,6 @@
 */
 namespace Arikaim\Extensions\Routes\Controllers;
 
-use Arikaim\Core\Db\Model;
 use Arikaim\Core\Controllers\ControlPanelApiController;
 
 /**
@@ -28,7 +27,7 @@ class RoutesControlPanel extends ControlPanelApiController
     }
     
     /**
-     * Set status
+     * Set route status
      *
      * @param \Psr\Http\Message\ServerRequestInterface $request
      * @param \Psr\Http\Message\ResponseInterface $response
@@ -39,14 +38,17 @@ class RoutesControlPanel extends ControlPanelApiController
     {    
         $this->onDataValid(function($data) {
             $uuid = $data->get('uuid');
-         
-            $result = false;
-            $this->setResponse($result,function() {
-             
+            $status = $data->get('status');
+
+            $result = $this->get('routes')->setRoutesStatus(['uuid' => $uuid],$status);           
+            $this->setResponse($result,function() use($uuid,$status) {
+                // clear cache
+                $this->get('cache')->clear();
                 $this
-                    ->message('update');
-                   // ->field('uuid',$model->uuid);   
-            },'errors.update');
+                    ->message('status')
+                    ->field('status',$status)
+                    ->field('uuid',$uuid);   
+            },'errors.status');
         });
         $data      
             ->addRule('text:min=2','uuid')           

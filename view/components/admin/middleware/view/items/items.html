@@ -1,9 +1,18 @@
-{% if items|length == 0 %}
+{% set modules = package('module').getPackages(true,{ type: 'middleware'}) %}
+
+{% if modules|length == 0 %}
     <div class="item">
         {{ labels.empty }}
     </div>
 {% endif %}
 
-{% for item in items %}
-   
+{% for item in modules %}
+   <div class="item">
+       <div class="content">
+           <button class="ui mini basic icon button install-middlware" package-name="{{ item }}" title="{{ labels.install }}">
+               <i class="icon green plus"></i>
+           </button>
+           {{ item }}
+       </div>       
+   </div>
 {% endfor %}

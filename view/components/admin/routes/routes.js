@@ -7,9 +7,15 @@
 'use strict';
 
 function RoutesControlPanel() {
-    var self = this;
-
    
+    this.setStatus = function(uuid, status, onSuccess, onError) { 
+        var data = { 
+            status: status,
+            uuid: uuid 
+        };
+        
+        return arikaim.put('/api/admin/routes/status',data,onSuccess,onError);           
+    };
 }
 
 var routesControlPanel = new RoutesControlPanel();

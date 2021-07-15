@@ -23,6 +23,10 @@ class Routes extends Extension
     */
     public function install()
     {         
+        // Control Panel
+        $this->addAdminApiRoute('PUT','/api/admin/routes/status','RoutesControlPanel','setStatus');   
+        $this->addAdminApiRoute('POST','/api/admin/routes/middleware/add','MiddlewareControlPanel','add');  
+        $this->addAdminApiRoute('PUT','/api/admin/routes/middleware/delete','MiddlewareControlPanel','delete');   
     }   
 
     /**

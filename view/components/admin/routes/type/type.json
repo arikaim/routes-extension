@@ -1,3 +1,10 @@
 {
-    
+    "items": {
+        "": "All",
+        "1": "Page",
+        "2": "Api",
+        "3": "Home Page",   
+        "4": "Admin Api"
+    },
+    "empty": "Route Type"
 }

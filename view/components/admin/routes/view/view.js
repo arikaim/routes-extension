@@ -10,7 +10,58 @@ function RoutesView() {
     var self = this;
 
     this.init = function() {  
-        $('.status-filter').dropdown({});
+        paginator.init('routes_items',"routes::admin.routes.view.items",'routes');  
+
+        $('.status-filter').dropdown({
+            onChange: function(value) {
+                var searchData = self.createSearchFilter();            
+                search.setSearch(searchData,'routes',function(result) {                  
+                    self.loadList();
+                });  
+            }
+        });
+        
+        $('.route-type-dropdown').dropdown({
+            onChange: function(value) {
+                var searchData = self.createSearchFilter();           
+                search.setSearch(searchData,'routes',function(result) {                  
+                    self.loadList();
+                });  
+            }
+        });
+
+        $('#extensions_dropdown').dropdown({
+            onChange: function(value) {               
+                var searchData = self.createSearchFilter();
+                search.setSearch(searchData,'routes',function(result) {                  
+                    self.loadList();
+                });             
+            }
+        });
+    };
+
+    this.createSearchFilter = function() {
+        var status = $('.status-filter').dropdown('get value');
+        var extension = $('#extensions_dropdown').dropdown('get value');
+        var type = $('.route-type-dropdown').dropdown('get value');
+
+        return {
+            search: {
+                type: type,
+                extension: extension,
+                status: status
+            }
+        };
+    };
+
+    this.loadList = function() {
+        return arikaim.page.loadContent({
+            id: 'routes_items',           
+            component: 'routes::admin.routes.view.items',          
+        },function(result) {
+            self.initRows();          
+            paginator.reload(); 
+        });  
     };
 
     this.initRows = function() {
@@ -18,12 +69,13 @@ function RoutesView() {
             var uuid = $(element).attr('uuid');            
             self.loadDetails(uuid);
         });
+
         $('.status-dropdown').dropdown({
             onChange: function(value) {               
                 var uuid = $(this).attr('uuid');
-                usersAdmin.setStatus(uuid,value);
+                routesControlPanel.setStatus(uuid,value);
             }
-        });
+        });       
     };
 
     this.loadDetails = function(uuid) {    

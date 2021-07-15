@@ -1,7 +1,15 @@
 
-{% set routes = service('routes').getRoutes() %}
-{% set items = paginate(routes,'routes') %}
+{% set type = searchValue('type','routes') %}
+{% set status = searchValue('status','routes') %}
+{% set extension = searchValue('extension','routes') %}
+{% set rotes_filter = {} %}
 
+{% set rotes_filter = (type is not empty) ? rotes_filter|merge({ type: type }) : rotes_filter %}
+{% set rotes_filter = (status is not empty) ? rotes_filter|merge({ status: status }) : rotes_filter %}
+{% set rotes_filter = (extension is not empty) ? rotes_filter|merge({ extension_name: extension }) : rotes_filter %}
+
+{% set routes = service('routes').getRoutes(rotes_filter) %}
+{% set items = paginate(routes,'routes') %}
 {% set items = items.getItems() %}
 {% if items|length == 0 %}
     <tr>

@@ -5,7 +5,7 @@
         </button>
     </td>
     <td class="two wide">       
-        {{ component('components:status.dropdown',{ status: route.status, uuid: item.uuid }) }} 
+        {{ component('components:status.dropdown',{ status: route.status, uuid: route.uuid, skip: [2,3,4,5] }) }} 
     </td>
     <td class="two wide">
         {{ component('components:labels.route-type',{ type: route.type, class: 'basic' }) }}         

@@ -1,7 +1,10 @@
-{
-    "title": "Content Providers",
+{    
     "labels": {   
         "global": "Global",
+        "install": "Install",      
         "packages": "Middleware Packages"    
+    },
+    "messages": {
+        "global": "Executed for all routes."   
     }
 }

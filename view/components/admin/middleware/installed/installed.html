@@ -1,0 +1,22 @@
+{% set middlewares = getConfigOption('middleware') %}
+<div class="ui list divided">
+    {% if middlewares|length == 0 %}
+    <div class="item">
+        {{ labels.empty }}
+    </div>
+    {% endif %}
+
+    {% for item in middlewares %}
+    <div class="item">
+        <div class="content">
+            <button 
+                class="ui mini basic icon button uninstall-middlware" 
+                middleware-class="{{ item }}" 
+                title="{{ labels.uninstall }}">
+                <i class="icon orange times"></i>
+            </button>
+            {{ item }}
+        </div>       
+    </div>
+    {% endfor %}
+</div>          
