@@ -10,7 +10,7 @@
                     {{ component('routes::admin.routes.type',{ selected: type }) }}
 
                     <span class="font-bold px-2">{{ labels.status }}</span>
-                    {{  component('components:status.dropdown',{ 
+                    {{  component('semantic~status.dropdown',{ 
                             status: status_filter,
                             selected: status,
                             skip: [2,3,4,5],
@@ -28,7 +28,7 @@
                     }}
                 </div>
                 <div class="right aligned two wide column">
-                    {{ component('components:paginator.dropdown',{ namespace: 'routes' }) }}
+                    {{ component('semantic~paginator.dropdown',{ namespace: 'routes' }) }}
                 </div> 
             </div>            
         </div>
@@ -41,7 +41,7 @@
                 </tbody>
             </table>          
             <div id="paginator">
-                {{ component("components:paginator",{ namespace: 'routes' }) }}
+                {{ component("semantic~paginator",{ namespace: 'routes' }) }}
             </div>
         </div>       
     </div>     

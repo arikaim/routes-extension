@@ -5,7 +5,7 @@
     "type": "system",
     "description": "Routes and middleware manager.",
     "short-description": "Routes and middleware manager.",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "repository": "https://github.com/arikaim/routes-extension.git",
     "position": "2",
     "requires": {      

@@ -1,7 +1,7 @@
 {
     "include": {
         "js": [
-            "components:search",      
+            "semantic~search",      
             "routes::admin.routes"           
         ]
     },

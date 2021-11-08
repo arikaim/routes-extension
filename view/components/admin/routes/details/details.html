@@ -17,7 +17,7 @@
             <tr>
                 <td class="right aligned">{{ labels.status }}</td>
                 <td>
-                    {{ component('components:status.icon',{ status: route.status }) }}     
+                    {{ component('semantic~status.icon',{ status: route.status }) }}     
                 </td>
             </tr>      
             {% if route.name is not empty %}     
@@ -29,7 +29,7 @@
             <tr>
                 <td class="right aligned">{{ labels.type }}</td>
                 <td>
-                    {{ component('components:labels.route-type',{ type: route.type, class: 'basic' }) }}         
+                    {{ component('semantic~labels.route-type',{ type: route.type, class: 'basic' }) }}         
                 </td>
             </tr>  
             <tr>

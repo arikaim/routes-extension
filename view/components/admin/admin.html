@@ -3,7 +3,7 @@
     { id: 'middleware_button', title: labels.middleware, component: 'routes::admin.middleware.view', icon: 'layer group' },       
 ] %}
 
-{{  component('components:tabs',{ 
+{{  component('semantic~tabs',{ 
         items: items,
         menu: { extension: 'routes' },
         content: { component: 'routes::admin.routes.view'} 
