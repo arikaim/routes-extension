@@ -2,7 +2,7 @@
     "labels": {   
         "global": "Global",
         "install": "Install",      
-        "packages": "Middleware Packages"    
+        "packages": "Packages"    
     },
     "messages": {
         "global": "Executed for all routes."   

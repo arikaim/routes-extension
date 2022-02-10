@@ -11,11 +11,14 @@
         <div class="content">
             <button 
                 class="ui mini basic icon button uninstall-middlware" 
-                middleware-class="{{ item }}" 
+                middleware-class="{{ item.handler }}" 
                 title="{{ labels.uninstall }}">
                 <i class="icon orange times"></i>
             </button>
-            {{ item }}
+            <span class="pl-2">
+                <i class="icon blue code"></i>
+                {{ item.handler}}
+            </span>           
         </div>       
     </div>
     {% endfor %}

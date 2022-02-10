@@ -38,19 +38,24 @@ class MiddlewareControlPanel extends ControlPanelApiController
     public function addController($request, $response, $data) 
     {    
         $this->onDataValid(function($data) {
-            $name = $data->get('name');
-        
-            $packageManager = $this->get('packages')->create('module');
-            $package = $packageManager->createPackage($name);
-            if (\is_object($package) == false) {
-                $this->error('errors.middleware.name');
-                return false;
+            $class = $data->get('class');
+            if (\class_exists($class) == false) {
+                $this->error('Not vlaid class name');
+                return;
+            }
+          
+            $middlewares = $this->get('config')->get('middleware',[]);
+            
+            $handlers = \array_column($middlewares,'handler');
+            if (($key = \array_search($class,$handlers)) !== false) {
+                unset($middlewares[$key]);
             }
 
-            $fullClass = Factory::getModuleClass($name,$package->getClass());
-            $middlewares = $this->get('config')->get('middleware',[]);
-            $middlewares[] = $fullClass;
-            $middlewares = \array_unique($middlewares);
+            $middlewares[] = [
+                'handler' => $class,
+                'options' => []
+            ];
+
             $this->get('config')['middleware'] = $middlewares;
             $this->get('config')->save();
             $this->get('cache')->clear();
@@ -61,7 +66,7 @@ class MiddlewareControlPanel extends ControlPanelApiController
             },'errors.middleware.add');
         });
         $data      
-            ->addRule('text:min=2','name')           
+            ->addRule('text:min=2','class')           
             ->validate();    
     }
 
@@ -77,10 +82,9 @@ class MiddlewareControlPanel extends ControlPanelApiController
     {    
         $this->onDataValid(function($data) {
             $class = $data->get('class');
-           
             $middlewares = $this->get('config')->get('middleware',[]);
-            
-            if (($key = \array_search($class,$middlewares)) !== false) {
+            $handlers = \array_column($middlewares,'handler');
+            if (($key = \array_search($class,$handlers)) !== false) {
                 unset($middlewares[$key]);
             }
 

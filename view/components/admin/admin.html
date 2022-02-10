@@ -1,10 +1,8 @@
-{% set items = [ 
-    { id: 'routes_button', title: labels.routes, component: 'routes::admin.routes.view', icon: 'route', active: true },     
-    { id: 'middleware_button', title: labels.middleware, component: 'routes::admin.middleware.view', icon: 'layer group' },       
-] %}
-
 {{  component('semantic~tabs',{ 
-        items: items,
+        items: [ 
+            { id: 'routes_button', title: labels.routes, component: 'routes::admin.routes.view', icon: 'route', active: true },     
+            { id: 'middleware_button', title: labels.middleware, component: 'routes::admin.middleware.view', icon: 'layer group' },       
+        ],
         menu: { extension: 'routes' },
         content: { component: 'routes::admin.routes.view'} 
     })

@@ -1,18 +1,35 @@
-{% set modules = package('module').getPackages(true,{ type: 'middleware'}) %}
+{% set package = package(package_type).createPackage(package_name) %}
 
-{% if modules|length == 0 %}
-    <div class="item">
+{% if package_type == 'extension' %}
+    {% set items = package.getPackageMiddlewares() %}
+{% else %}
+    {% set module = service('modules').create(package_name) %}  
+    {{ module.boot() }}
+    {% set items = module.getMiddlewareClasses() %}
+{% endif %}
+<div class="p-1">
+    <div class="ui basic mini label">
+        {{ package_type }}
+    </div>
+    <span class="font-bold">{{ package_name }}</span>
+</div>
+{% if items|length == 0 %}
+    <div class="ui warning message">
         {{ labels.empty }}
     </div>
 {% endif %}
-
-{% for item in modules %}
-   <div class="item">
-       <div class="content">
-           <button class="ui mini basic icon button install-middlware" package-name="{{ item }}" title="{{ labels.install }}">
-               <i class="icon green plus"></i>
-           </button>
-           {{ item }}
-       </div>       
-   </div>
-{% endfor %}
+<div class="ui list">
+    {% for item in items %}
+    <div class="item">
+        <div class="content">
+            <button 
+                class="ui mini basic icon button install-middlware" 
+                class-name="{{ item }}" 
+                title="{{ labels.install }}">
+                <i class="icon green plus"></i>
+            </button>
+            {{ item }}
+        </div>       
+    </div>
+    {% endfor %}
+</div>

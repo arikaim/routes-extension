@@ -14,9 +14,9 @@ function MiddlewareView() {
 
     this.initRows = function() {
         arikaim.ui.button('.install-middlware',function(element) {
-            var name = $(element).attr('package-name');
+            var className = $(element).attr('class-name');
 
-            return middlewareControlPanel.add(name,function(result) {
+            return middlewareControlPanel.add(className,function(result) {
                 self.loadInstalled();
             });
         });

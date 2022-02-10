@@ -1,8 +1,7 @@
 <div class="ui segment">   
     <div class="ui stackable two column grid">      
         <div class="column">   
-            <h4>{{ labels.global }}</h4>
-            <span>{{ messages.global }}</span>
+            <h4>{{ labels.global }}</h4>           
             <div class="ui divider"></div>  
             <div id="installed_list">
                 {{ component('routes::admin.middleware.installed') }}  
@@ -10,10 +9,8 @@
         </div>
         <div class="column" id="middleware_packages">
             <h4>{{ labels.packages }}</h4>
-            <div class="ui divider"></div> 
-            <div class="ui list divided">
-                {{ component('routes::admin.middleware.view.items') }}      
-            </div>            
+            <div class="ui divider"></div>            
+            {{ component('routes::admin.middleware.view.packages') }}                           
         </div>
     </div>   
 </div>

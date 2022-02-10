@@ -1,5 +1,6 @@
 {
     "labels": {
-        "empty": "No instaled global middlewares."        
+        "install": "Install",
+        "empty": "No middlewares in this package."        
     }
 }

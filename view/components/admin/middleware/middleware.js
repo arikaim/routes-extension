@@ -8,9 +8,9 @@
 
 function MiddlewareControlPanel() {
   
-    this.add = function(name, onSuccess, onError) {
+    this.add = function(className, onSuccess, onError) {
         var data = {
-            name: name
+            class: className
         };
 
         return arikaim.post('/api/admin/routes/middleware/add',data,onSuccess,onError);   
