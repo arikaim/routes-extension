@@ -1,0 +1,12 @@
+{
+    "include": {
+        "js": [          
+            "routes::admin.middleware.view"           
+        ]
+    },
+    "access": {
+        "auth": "session",
+        "permission": "ControlPanel:full",
+        "redirect": "/admin"           
+    }
+}

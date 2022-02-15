@@ -1,0 +1,18 @@
+{
+    "title": "Route Middlewares",
+    "labels": {  
+        "route": "Route",  
+        "add": "Add middleware to route",
+        "uuid": "Uuid",
+        "type": "Type",
+        "status": "Status",
+        "method": "Method",
+        "middleware": "Middleware",
+        "page": "Page Component",
+        "pattern": "Pattern",
+        "extension": "Extension",
+        "redirect": "Redirect Url",
+        "handler": "Handler",
+        "auth": "Auth"                   
+    }
+}

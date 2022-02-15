@@ -1,0 +1,24 @@
+{% set route = service('routes').getRouteDetails(uuid) %}
+<div class="ui segment">
+    {{ component('semantic~segment-title',{ title: title, icon: 'layer group' }) }}
+    <div class="mt-4">
+        <h4>
+            {{ labels.route }}
+        </h4>
+        <div class="ui basic label">
+            {{ route.method }}
+        </div>
+        <div class="ui basic label">
+            {{ route.pattern }}
+        </div>       
+        <div class="mt-2">
+            <h4>{{ labels.middleware }}</h4>
+            <div class="ui divider"></div>    
+        </div>
+        <div class="mt-2">
+            <h4>{{ labels.add }}</h4>
+            <div class="ui divider"></div>            
+            {{ component('routes::admin.middleware.view.packages',{ type: 'route', route_uuid: uuid }) }}  
+        </div>
+    </div>
+</div>

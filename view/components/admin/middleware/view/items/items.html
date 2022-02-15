@@ -23,8 +23,10 @@
     <div class="item">
         <div class="content">
             <button 
-                class="ui mini basic icon button install-middlware" 
+                class="ui mini basic icon button install-middleware" 
                 class-name="{{ item }}" 
+                route-uuid="{{ route_uuid }}"
+                middleware-type="{{ type|default('global') }}"
                 title="{{ labels.install }}">
                 <i class="icon green plus"></i>
             </button>

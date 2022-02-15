@@ -1,11 +1,12 @@
 <div>
     <span class="font-bold px-1">{{ labels.extension }}</span>
-    {{ component("system:admin.extensions.dropdown",{}) }} 
+    {{ component("system:admin.extensions.dropdown",{ class: 'mini', id: 'extensions' }) }} 
     <span class="font-bold px-1">{{ labels.module }}</span>
-    {{ component("system:admin.modules.dropdown",{}) }}  
+    {{ component("system:admin.modules.dropdown",{ class: 'mini', id: 'modules'}) }}  
 </div>
 <div class="ui divider"></div>
-<div id="middleware_classes">
-</div>
-
- 
+<div
+    route-uuid="{{ route_uuid }}"
+    middleware-type="{{ type|default('global') }}"
+    id="middleware_classes">
+</div> 

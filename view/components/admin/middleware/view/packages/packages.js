@@ -1,30 +1,39 @@
 'use strict';
 
 arikaim.component.onLoaded(function() {
-    $('#extensions_dropdown').dropdown({
+    var routeUuid = $('#middleware_classes').attr('route-uuid');
+    var type = $('#middleware_classes').attr('middleware-type');
+
+    $('#extensions').dropdown({
         onChange: function(name) {                      
             arikaim.page.loadContent({
                 id: 'middleware_classes',
                 component: "routes::admin.middleware.view.items",
                 params: { 
-                    package_name : name,                  
+                    package_name : name,  
+                    route_uuid: routeUuid,
+                    type: type,                   
                     package_type : 'extension' 
-                },
-                useHeader: true
+                }
+            },function() {
+                middlewareView.initRows();
             });     
         }
     });  
     
-    $('#modules_dropdown').dropdown({
-        onChange: function(name) {              
+    $('#modules').dropdown({
+        onChange: function(name) {         
             arikaim.page.loadContent({
                 id: 'middleware_classes',
                 component: "routes::admin.middleware.view.items",
                 params: { 
-                    package_name : name,                  
+                    package_name: name,   
+                    route_uuid: routeUuid,
+                    type: type,                    
                     package_type : 'module' 
-                },
-                useHeader: true
+                }
+            },function() {
+                middlewareView.initRows();
             });      
         }
     }); 

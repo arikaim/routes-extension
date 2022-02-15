@@ -19,18 +19,19 @@
 
             <span class="font-bold px-2">{{ labels.extension }}</span>
             {{  component('system:admin.extensions.dropdown',{ 
-                    selected: extension,   
+                    selected: extension, 
+                    class: 'mini', 
                     all: false,
                     class: 'clearable selection search labeled'
                 }) 
             }}
         </div>
         <div class="right aligned two wide column">
-            {{ component('semantic~paginator.dropdown',{ namespace: 'routes' }) }}
+            {{ component('semantic~paginator.dropdown',{ class: '', namespace: 'routes' }) }}
         </div> 
     </div>            
 </div>
-<div class="ui stackable  grid">      
+<div class="ui stackable grid">      
     <div class="ten wide column">    
         <div class="ui segment p-1">
             <table class="ui bvery basic table">

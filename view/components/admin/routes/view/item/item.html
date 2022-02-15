@@ -1,7 +1,16 @@
 <tr id="row_{{ route.name }}">
-    <td class="one wide">
-        <button class="ui mini basic icon button route-details" uuid="{{ route.uuid }}">
+    <td class="three wide">
+        <button 
+            title="{{ labels.details }}"
+            class="ui mini basic icon button route-details" 
+            uuid="{{ route.uuid }}">
             <i class="info icon"></i>
+        </button>
+        <button 
+            title="{{ labels.middleware }}"
+            class="ui mini basic icon button route-middleware" 
+            uuid="{{ route.uuid }}">
+            <i class="layer group icon"></i>
         </button>
     </td>
     <td class="three wide">       

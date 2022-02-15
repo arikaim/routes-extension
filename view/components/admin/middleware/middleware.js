@@ -7,7 +7,16 @@
 'use strict';
 
 function MiddlewareControlPanel() {
-  
+
+    this.addRouteMiddleware = function(roudeUuid, className, onSuccess, onError) {
+        var data = {
+            class: className,
+            uuid: roudeUuid
+        };
+
+        return arikaim.post('/api/admin/routes/middleware/route/add',data,onSuccess,onError);   
+    }
+
     this.add = function(className, onSuccess, onError) {
         var data = {
             class: className
