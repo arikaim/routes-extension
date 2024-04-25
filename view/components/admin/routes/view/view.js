@@ -72,7 +72,7 @@ function RoutesView() {
 
         arikaim.ui.button('.route-middleware',function(element) {
             var uuid = $(element).attr('uuid');  
-                      
+                
             return arikaim.page.loadContent({
                 id: 'route_details',           
                 component: 'routes::admin.routes.middleware',

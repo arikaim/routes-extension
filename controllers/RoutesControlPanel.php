@@ -36,22 +36,21 @@ class RoutesControlPanel extends ControlPanelApiController
     */
     public function setStatusController($request, $response, $data) 
     {    
-        $this->onDataValid(function($data) {
-            $uuid = $data->get('uuid');
-            $status = $data->get('status');
-
-            $result = $this->get('routes')->setRoutesStatus(['uuid' => $uuid],$status);           
-            $this->setResponse($result,function() use($uuid,$status) {
-                // clear cache
-                $this->get('cache')->clear();
-                $this
-                    ->message('status')
-                    ->field('status',$status)
-                    ->field('uuid',$uuid);   
-            },'errors.status');
-        });
         $data      
             ->addRule('text:min=2','uuid')           
-            ->validate();    
+            ->validate(true);    
+     
+        $uuid = $data->get('uuid');
+        $status = $data->get('status');
+
+        $result = $this->get('routes')->setRoutesStatus(['uuid' => $uuid],$status);           
+        $this->setResponse($result,function() use($uuid,$status) {
+            // clear cache
+            $this->get('cache')->clear();
+            $this
+                ->message('status')
+                ->field('status',$status)
+                ->field('uuid',$uuid);   
+        },'errors.status');
     }
 }

@@ -10,7 +10,6 @@
 namespace Arikaim\Extensions\Routes\Controllers;
 
 use Arikaim\Core\Controllers\ControlPanelApiController;
-use Arikaim\Core\Utils\Factory;
 
 /**
  * Reports control panel controler
@@ -37,37 +36,36 @@ class MiddlewareControlPanel extends ControlPanelApiController
     */
     public function addController($request, $response, $data) 
     {    
-        $this->onDataValid(function($data) {
-            $class = $data->get('class');
-            if (\class_exists($class) == false) {
-                $this->error('Not vlaid class name');
-                return;
-            }
-          
-            $middlewares = $this->get('config')->get('middleware',[]);
-            
-            $handlers = \array_column($middlewares,'handler');
-            if (($key = \array_search($class,$handlers)) !== false) {
-                unset($middlewares[$key]);
-            }
-
-            $middlewares[] = [
-                'handler' => $class,
-                'options' => []
-            ];
-
-            $this->get('config')['middleware'] = $middlewares;
-            $this->get('config')->save();
-            $this->get('cache')->clear();
-           
-            $this->setResponse(true,function() {             
-                $this
-                    ->message('middleware.add');                  
-            },'errors.middleware.add');
-        });
         $data      
             ->addRule('text:min=2','class')           
-            ->validate();    
+            ->validate(true); 
+    
+        $class = $data->get('class');
+        if (\class_exists($class) == false) {
+            $this->error('Not vlaid class name');
+            return;
+        }
+        
+        $middlewares = $this->get('config')->get('middleware',[]);
+        
+        $handlers = \array_column($middlewares,'handler');
+        if (($key = \array_search($class,$handlers)) !== false) {
+            unset($middlewares[$key]);
+        }
+
+        $middlewares[] = [
+            'handler' => $class,
+            'options' => []
+        ];
+
+        $this->get('config')['middleware'] = $middlewares;
+        $this->get('config')->save();
+        $this->get('cache')->clear();
+        
+        $this->setResponse(true,function() {             
+            $this
+                ->message('middleware.add');                  
+        },'errors.middleware.add');     
     }
 
     /**
@@ -80,25 +78,24 @@ class MiddlewareControlPanel extends ControlPanelApiController
     */
     public function deleteController($request, $response, $data) 
     {    
-        $this->onDataValid(function($data) {
-            $class = $data->get('class');
-            $middlewares = $this->get('config')->get('middleware',[]);
-            $handlers = \array_column($middlewares,'handler');
-            if (($key = \array_search($class,$handlers)) !== false) {
-                unset($middlewares[$key]);
-            }
-
-            $this->get('config')['middleware'] = $middlewares;
-            $this->get('config')->save();
-            $this->get('cache')->clear();
-            
-            $this->setResponse(true,function() {             
-                $this
-                    ->message('middleware.delete');                  
-            },'errors.middleware.delete');
-        });
         $data      
             ->addRule('text:min=2','class')           
-            ->validate();    
+            ->validate(true);    
+      
+        $class = $data->get('class');
+        $middlewares = $this->get('config')->get('middleware',[]);
+        $handlers = \array_column($middlewares,'handler');
+        if (($key = \array_search($class,$handlers)) !== false) {
+            unset($middlewares[$key]);
+        }
+
+        $this->get('config')['middleware'] = $middlewares;
+        $this->get('config')->save();
+        $this->get('cache')->clear();
+        
+        $this->setResponse(true,function() {             
+            $this
+                ->message('middleware.delete');                  
+        },'errors.middleware.delete');       
     }
 }

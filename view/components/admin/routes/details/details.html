@@ -1,7 +1,7 @@
 {% set route = service('routes').getRouteDetails(uuid) %}
 {% set auth_names = (route.auth is not empty) ? service('access').getAuthNames(route.auth) : '' %}
-<div class="ui segment">
-    {{ component('semantic~segment-title',{ title: title, icon: 'info' }) }}
+
+{% component 'semantic~panel' %}
     <div class="mt-4">       
         <table class="ui very basic definition table small">
             <thead>
@@ -89,4 +89,4 @@
             </tbody>  
         </table>         
     </div>   
-</div>
+{% endcomponent %}

@@ -1,5 +1,6 @@
 {
     "title": "Route Details",
+    "icon": "info",
     "labels": {    
         "name": "Name",
         "uuid": "Uuid",

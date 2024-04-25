@@ -1,5 +1,6 @@
 {
     "title": "Route Middlewares",
+    "icon": "layer group",
     "labels": {  
         "route": "Route",  
         "add": "Add middleware to route",
@@ -14,5 +15,6 @@
         "redirect": "Redirect Url",
         "handler": "Handler",
         "auth": "Auth"                   
-    }
+    },
+    "message": "No middlewares added to this route."
 }

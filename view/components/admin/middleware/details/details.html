@@ -1,7 +1,7 @@
 {% set type = service('content').typeRegistry().get(content_type) %}
 {% set title = type.getTitle() ~ ' ' ~ title %}
-{{ component('semantic~segment-title',{ title: title }) }}
-<div class="mt-4">
+
+{% component 'semantic~panel' %}
     <div class="ui three column divided grid">
         <div class="column">
             <h4>{{ labels.details }}</h4>
@@ -79,4 +79,4 @@
             </table>
         </div>
     </div>      
-</div>    
+{% endcomponent %}   

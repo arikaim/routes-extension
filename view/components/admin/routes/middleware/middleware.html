@@ -1,6 +1,5 @@
 {% set route = service('routes').getRouteDetails(uuid) %}
-<div class="ui segment">
-    {{ component('semantic~segment-title',{ title: title, icon: 'layer group' }) }}
+{% component 'semantic~panel' %}
     <div class="mt-4">
         <h4>
             {{ labels.route }}
@@ -12,17 +11,24 @@
             {{ route.pattern }}
         </div>       
         <div class="mt-2">
-            <h4>{{ labels.middleware }}</h4>
-            <div class="ui divider"></div>   
-            <div class="ui list my-2">
-                {% for item in route.middleware %}
-                    <div class="item">
-                        <i class="green icon check"></i>
-                        {{ item }}
-                    </div>
-                {% endfor %}
-            </div> 
+            {% if route.middleware|length > 0 %}
+                <h4>{{ labels.middleware }}</h4>
+                <div class="ui divider"></div>   
+                <div class="ui list my-2">
+                    {% for item in route.middleware %}
+                        <div class="item">
+                            <i class="green icon check"></i>
+                            {{ item }}
+                        </div>
+                    {% endfor %}
+                </div> 
+            {% else %}
+            <div class="mt-2 p-2">
+                {{ message }}
+            </div>
+            {% endif %}
         </div>
+        {% if enabled == true %}
         <div class="mt-4">
             <h4>{{ labels.add }}</h4>
             <div class="ui divider"></div>            
@@ -33,5 +39,6 @@
                 }) 
             }}  
         </div>
+        {% endif %}
     </div>
-</div>
+{% endcomponent %}
