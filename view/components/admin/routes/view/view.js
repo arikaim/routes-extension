@@ -10,46 +10,41 @@ function RoutesView() {
     var self = this;
 
     this.init = function() {  
-        paginator.init('routes_items',"routes::admin.routes.view.items",'routes');  
+       
+        $('.status-filter').on('change', function() {
+            var value= $(this).val();         
+            var searchData = self.createSearchFilter();   
 
-        $('.status-filter').dropdown({
-            onChange: function(value) {
-                var searchData = self.createSearchFilter();            
-                search.setSearch(searchData,'routes',function(result) {                  
-                    self.loadList();
-                });  
-            }
+            search.setSearch(searchData,'routes',function(result) {                  
+                self.loadList();
+            });  
         });
         
-        $('.route-type-dropdown').dropdown({
-            onChange: function(value) {
-                var searchData = self.createSearchFilter();           
-                search.setSearch(searchData,'routes',function(result) {                  
-                    self.loadList();
-                });  
-            }
+        $('.route-type-dropdown').on('change', function() {
+            var value = $(this).val();        
+            var searchData = self.createSearchFilter();      
+
+            search.setSearch(searchData,'routes',function(result) {                  
+                self.loadList();
+            });  
         });
 
-        $('#extensions_dropdown').dropdown({
-            onChange: function(value) {               
-                var searchData = self.createSearchFilter();
-                search.setSearch(searchData,'routes',function(result) {                  
-                    self.loadList();
-                });             
-            }
-        });
+        $('#extensions_dropdown').on('change', function() {
+            var value = $(this).val();               
+            var searchData = self.createSearchFilter();
+
+            search.setSearch(searchData,'routes',function(result) {                  
+                self.loadList();
+            });                        
+        });      
     };
 
     this.createSearchFilter = function() {
-        var status = $('.status-filter').dropdown('get value');
-        var extension = $('#extensions_dropdown').dropdown('get value');
-        var type = $('.route-type-dropdown').dropdown('get value');
-
         return {
             search: {
-                type: type,
-                extension: extension,
-                status: status
+                type: $('.route-type-dropdown').val(),
+                extension: $('#extensions_dropdown').val(),
+                status: $('.status-filter').val()
             }
         };
     };
@@ -60,7 +55,7 @@ function RoutesView() {
             component: 'routes::admin.routes.view.items',          
         },function(result) {
             self.initRows();          
-            paginator.reload(); 
+           // paginator.reload(); 
         });  
     };
 
@@ -80,11 +75,11 @@ function RoutesView() {
             }); 
         });
 
-        $('.status-dropdown').dropdown({
-            onChange: function(value) {               
-                var uuid = $(this).attr('uuid');
-                routesControlPanel.setStatus(uuid,value);
-            }
+        $('.status-dropdown').on('change', function() {
+            var value = $(this).val();            
+            var uuid = $(this).attr('uuid');
+
+            routesControlPanel.setStatus(uuid,value);
         });       
     };
 
@@ -92,7 +87,9 @@ function RoutesView() {
         return arikaim.page.loadContent({
             id: 'route_details',           
             component: 'routes::admin.routes.details',
-            params: { uuid: uuid }            
+            params: { 
+                uuid: uuid 
+            }            
         });  
     }
 }
@@ -101,5 +98,4 @@ var routesView = createObject(RoutesView,ControlPanelView);
 
 arikaim.component.onLoaded(function() {
     routesView.init();
-    routesView.initRows();
 });

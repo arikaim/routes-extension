@@ -1,6 +1,6 @@
 {
     "title": "Route Middlewares",
-    "icon": "layer group",
+    "icon": "icons~info",
     "labels": {  
         "route": "Route",  
         "add": "Add middleware to route",

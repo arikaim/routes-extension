@@ -1,7 +1,6 @@
 {    
-    "labels": {   
-        "global": "Global",
-        "install": "Install",      
+    "labels": {         
+        "installed": "Installed",      
         "packages": "Packages"    
     },
     "messages": {

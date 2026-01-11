@@ -1,5 +1,6 @@
 {
-    "icon": "info",
+    "title": "Details",
+    "icon": "icons~info",
     "labels": {    
         "name": "Name",
         "type": "Type",

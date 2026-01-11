@@ -8,13 +8,11 @@
 
 function RoutesControlPanel() {
    
-    this.setStatus = function(uuid, status, onSuccess, onError) { 
-        var data = { 
+    this.setStatus = function(uuid, status, onSuccess, onError) {    
+        return arikaim.put('/api/admin/routes/status',{ 
             status: status,
             uuid: uuid 
-        };
-        
-        return arikaim.put('/api/admin/routes/status',data,onSuccess,onError);           
+        },onSuccess,onError);           
     };
 }
 

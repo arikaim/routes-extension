@@ -1,8 +1,8 @@
 {% set type = service('content').typeRegistry().get(content_type) %}
 {% set title = type.getTitle() ~ ' ' ~ title %}
 
-{% component 'semantic~panel' %}
-    <div class="ui three column divided grid">
+{% component 'system:admin.panel' %}
+    
         <div class="column">
             <h4>{{ labels.details }}</h4>
             <table class="ui very basic definition mini table">
@@ -78,5 +78,5 @@
                 </tbody>
             </table>
         </div>
-    </div>      
+     
 {% endcomponent %}   

@@ -1,13 +1,14 @@
-{% set selected_text = (items[selected] is empty) ? empty : items[selected] %}
-<div class="ui dropdown route-type-dropdown {{ class|default('selection') }}" id="{{ id|default('route_type_dropdown') }}">
-    <input name="{{ name|default('route_type') }}" type="hidden" value="{{ selected }}">
-    <div class="text">{{ selected_text }}</div>
-    <i class="dropdown icon"></i>
-    <div class="menu">
-        {% for index, title in items %}
-            <div class="item" data-value="{{ index }}">
-                {{ title }}
-            </div>
-        {% endfor %}
-    </div>
-</div>
+<select
+    aria-placeholder="{{ placeholder }}"
+    {{ name|default('route_type') }}
+    class="{{ theme.form.select }} route-type-dropdown {{ class }} {{ size }}" 
+    id="{{ id|default('route_type_dropdown') }}">
+
+    {% for index, title in items %}
+        <option 
+            {{ (selected == index) ? 'selected' : '' }}
+            value="{{ index }}">
+            {{ title }}
+        </option>
+    {% endfor %}
+</select>

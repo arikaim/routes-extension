@@ -1,51 +1,66 @@
 {% set type = searchValue('type','routes') %}
 {% set status = searchValue('status','routes') %}
 {% set extension = searchValue('extension','routes') %}
-<div class="ui segment">
-    <div class="ui grid">
-        <div class="fourteen wide column">
-            <span class="font-bold px-2">{{ labels.type }}</span>
-            {{ component('routes::admin.routes.type',{ selected: type }) }}
 
-            <span class="font-bold px-2">{{ labels.status }}</span>
-            {{  component('semantic~status.dropdown',{ 
-                    status: status_filter,
-                    selected: status,
-                    skip: [2,3,4,5],
-                    class: 'status-filter clearable selection',                       
-                    all: false 
-                }) 
-            }} 
-
-            <span class="font-bold px-2">{{ labels.extension }}</span>
-            {{  component('system:admin.extensions.dropdown',{ 
-                    selected: extension, 
-                    class: 'mini', 
-                    all: false,
-                    class: 'clearable selection search labeled'
-                }) 
-            }}
+<div class="mt-4 flex flex-row item-center {{ theme.panel }}">
+    <div class="w-1/3 flex flex-row items-center">
+        <div class="font-bold mx-2">
+            {{ labels.type }}
         </div>
-        <div class="right aligned two wide column">
-            {{ component('semantic~paginator.dropdown',{ class: '', namespace: 'routes' }) }}
-        </div> 
-    </div>            
+        {{  component('routes::admin.routes.type',{ 
+                selected: type,
+                size: 'select-sm'
+            }) 
+        }}
+    </div>
+    <div class="ml-4 w-1/3 flex flex-row items-center">
+        <div class="font-bold px-2">
+            {{ labels.status }}
+        </div>
+        {{  component('system:admin.status.dropdown',{ 
+                status: status_filter,
+                size: 'select-sm',             
+                selected: status,
+                skip: [2,3,4,5],
+                class: 'status-filter',                       
+                all: true 
+            }) 
+        }} 
+    </div>
+    <div class="ml-4 w-1/3 flex flex-row items-center">
+        <div class="font-bold px-2">
+            {{ labels.extension }}
+        </div>
+        {{  component('system:admin.extensions.dropdown',{ 
+                selected: extension, 
+                size: 'select-sm', 
+                all: true               
+            }) 
+        }}
+    </div>        
 </div>
-<div class="ui grid">      
-    <div class="ten wide column">    
-        <div class="ui segment p-1">
-            <table class="ui very basic table">
-                <thead>
-                </thead>
-                <tbody id="routes_items" component="routes::admin.routes.view.items" namespace="routes">
-                    {{ component('routes::admin.routes.view.items') }}
-                </tbody>
-            </table>          
-            <div id="paginator">
-                {{ component("semantic~paginator",{ namespace: 'routes' }) }}
-            </div>
-        </div>       
-    </div>     
-    <div class="six wide column" id="route_details">      
+
+<div class="mt-4 flex flex-row items-start ">      
+    <div class="w-full {{ theme.panel }}">
+        <table class="{{ theme.table.default }}">
+            <thead>
+                <th class="w-32"></th>
+                <th class="w-64">{{ columns.status }}</th>
+                <th class="w-32">{{ columns.type }}</th>
+                <th class="w-32">{{ columns.method }}</th>
+                <th>{{ columns.path }}</th>
+            </thead>
+            <tbody 
+                id="routes_items" 
+                component="routes::admin.routes.view.items" 
+                namespace="routes">
+                {{ component('routes::admin.routes.view.items') }}
+            </tbody>
+        </table>          
+        <div id="paginator">
+            
+        </div>
+    </div>       
+    <div class="ml-4 w-1/3 hidden" id="route_details">      
     </div>
 </div>

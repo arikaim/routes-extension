@@ -1,16 +1,16 @@
-<div class="ui segment">   
-    <div class="ui stackable two column grid">      
-        <div class="column">   
-            <h4>{{ labels.global }}</h4>           
-            <div class="ui divider"></div>  
-            <div id="installed_list">
-                {{ component('routes::admin.middleware.installed') }}  
-            </div>                 
-        </div>
-        <div class="column" id="middleware_packages">
-            <h4>{{ labels.packages }}</h4>
-            <div class="ui divider"></div>            
-            {{ component('routes::admin.middleware.view.packages') }}                           
-        </div>
-    </div>   
+<div class="mt-4  flex flex-row items-start">            
+    <div class="w-1/3">   
+        <h4 class="font-bold">
+            {{ labels.installed }}
+        </h4>                  
+        <div id="installed_list">
+            {{ component('routes::admin.middleware.installed') }}  
+        </div>                 
+    </div>
+    <div class="ml-4 w-1/3" id="middleware_packages">
+        <h4 class="font-bold">
+            {{ labels.packages }}
+        </h4>       
+        {{ component('routes::admin.middleware.view.packages') }}                           
+    </div>
 </div>

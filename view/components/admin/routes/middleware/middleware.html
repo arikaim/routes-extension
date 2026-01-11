@@ -1,23 +1,24 @@
 {% set route = service('routes').getRouteDetails(uuid) %}
-{% component 'semantic~panel' %}
+{% component 'system:admin.panel' %}
     <div class="mt-4">
-        <h4>
+        <h4 class="font-bold">
             {{ labels.route }}
         </h4>
-        <div class="ui basic label">
+        <div class="badge badge-sm badge-outline">
             {{ route.method }}
         </div>
-        <div class="ui basic label">
+        <div class="badge badge-sm badge-outline">
             {{ route.pattern }}
         </div>       
         <div class="mt-2">
             {% if route.middleware|length > 0 %}
-                <h4>{{ labels.middleware }}</h4>
-                <div class="ui divider"></div>   
-                <div class="ui list my-2">
+                <h4 class="font-bold">
+                    {{ labels.middleware }}
+                </h4>
+                <div class="divider"></div>   
+                <div class="{{ theme.list.default }}">
                     {% for item in route.middleware %}
-                        <div class="item">
-                            <i class="green icon check"></i>
+                        <div class="flex">                          
                             {{ item }}
                         </div>
                     {% endfor %}
@@ -30,8 +31,10 @@
         </div>
         {% if enabled == true %}
         <div class="mt-4">
-            <h4>{{ labels.add }}</h4>
-            <div class="ui divider"></div>            
+            <h4 class="font-bold">
+                {{ labels.add }}
+            </h4>
+            <div class="divider"></div>            
             {{  component('routes::admin.middleware.view.packages',{ 
                     type: 'route', 
                     route: route,

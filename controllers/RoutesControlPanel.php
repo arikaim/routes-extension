@@ -31,8 +31,8 @@ class RoutesControlPanel extends ControlPanelApiController
      *
      * @param \Psr\Http\Message\ServerRequestInterface $request
      * @param \Psr\Http\Message\ResponseInterface $response
-     * @param Validator $data
-     * @return Psr\Http\Message\ResponseInterface
+     * @param \Arikaim\Core\Validator\Validator $data
+     * @return mixed
     */
     public function setStatusController($request, $response, $data) 
     {    
@@ -43,14 +43,16 @@ class RoutesControlPanel extends ControlPanelApiController
         $uuid = $data->get('uuid');
         $status = $data->get('status');
 
-        $result = $this->get('routes')->setRoutesStatus(['uuid' => $uuid],$status);           
-        $this->setResponse($result,function() use($uuid,$status) {
-            // clear cache
-            $this->get('cache')->clear();
-            $this
-                ->message('status')
-                ->field('status',$status)
-                ->field('uuid',$uuid);   
-        },'errors.status');
+        $result = $this->get('routes')->setRoutesStatus(['uuid' => $uuid],$status);   
+        if ($result == false) {
+            $this->error('errors.status');
+            return;
+        }
+        
+        $this->get('cache')->clear();    
+        $this
+            ->message('status')
+            ->field('status',$status)
+            ->field('uuid',$uuid);   
     }
 }

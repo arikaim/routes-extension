@@ -5,14 +5,14 @@
     "type": "system",
     "description": "Routes and middleware manager.",
     "short-description": "Routes and middleware manager.",
-    "version": "1.0.7",
+    "version": "2.0.0",
     "repository": "https://github.com/arikaim/routes-extension.git",
     "position": "2",
     "requires": {      
     },
     "admin-menu": {        
         "title": "Routes",
-        "icon": "route",
+        "svg_icon": "icons~info",
         "page-title": "Routes",
         "page-icon": "route",       
         "component": "routes::admin"

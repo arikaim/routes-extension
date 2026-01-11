@@ -7,28 +7,28 @@
     {{ module.boot() }}
     {% set items = module.getMiddlewareClasses() %}
 {% endif %}
-<div class="p-1">
-    <div class="ui basic mini label">
+<div class="my-4 flex flex-row items-center">
+    <div class="badge badge-sm badge-outline">
         {{ package_type }}
     </div>
-    <span class="font-bold">{{ package_name }}</span>
+    <div class="ml-4 font-bold">{{ package_name }}</div>
 </div>
 {% if items|length == 0 %}
-    <div class="ui warning message">
-        {{ labels.empty }}
-    </div>
+    {{ component('system:admin.alert.info',{ message: labels.empty }) }}  
+    {% error '' %}
 {% endif %}
-<div class="ui list">
+
+<div class="{{ theme.list.default }}">
     {% for item in items %}
-    <div class="item">
-        <div class="content">
+    <div class="fle xflex-row items-center">
+        <div class="mx-1">
             <button 
-                class="ui mini basic icon button install-middleware" 
+                class="{{ theme.buttons.icon }} install-middleware" 
                 class-name="{{ item }}" 
                 route-uuid="{{ route_uuid }}"
                 middleware-type="{{ type|default('global') }}"
                 title="{{ labels.install }}">
-                <i class="icon green plus"></i>
+                {{ component('icons~plus',theme.icons.menu,'svg') }}       
             </button>
             {{ item }}
         </div>       

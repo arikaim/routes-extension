@@ -9,33 +9,23 @@
  function MiddlewareControlPanel() {
  
      this.addRouteMiddleware = function(roudeUuid, className, onSuccess, onError) {
-         var data = {
+        return arikaim.post('/api/admin/routes/middleware/route/add',{
              class: className,
              uuid: roudeUuid
-         };
- 
-         return arikaim.post('/api/admin/routes/middleware/route/add',data,onSuccess,onError);   
+        },onSuccess,onError);   
      }
  
      this.add = function(className, onSuccess, onError) {
-         var data = {
-             class: className
-         };
- 
-         return arikaim.post('/api/admin/routes/middleware/add',data,onSuccess,onError);   
+        return arikaim.post('/api/admin/routes/middleware/add',{
+            class: className
+        },onSuccess,onError);   
      }
  
      this.delete = function(middlewareClass, onSuccess, onError) {
-         var data = {
-             class: middlewareClass
-         };
- 
-         return arikaim.put('/api/admin/routes/middleware/delete',data,onSuccess,onError);   
+        return arikaim.put('/api/admin/routes/middleware/delete',{
+            class: middlewareClass
+        },onSuccess,onError);   
      }
  }
  
- var middlewareControlPanel = new MiddlewareControlPanel();
-
-arikaim.component.onLoaded(function() {
-    arikaim.ui.tab('.tab-item','tab_content');   
-});
+var middlewareControlPanel = new MiddlewareControlPanel();

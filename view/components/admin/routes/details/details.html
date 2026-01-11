@@ -1,75 +1,85 @@
 {% set route = service('routes').getRouteDetails(uuid) %}
 {% set auth_names = (route.auth is not empty) ? service('access').getAuthNames(route.auth) : '' %}
 
-{% component 'semantic~panel' %}
+{% component 'system:admin.panel' %}
     <div class="mt-4">       
-        <table class="ui very basic definition table small">
+        <table class="{{ theme.table.details }}">
             <thead>
                 <tr>
-                    <th class="two wide"></th>
+                    <th class="w-1/3"></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td class="right aligned">{{ labels.uuid }}</td>
+                    <td class="{{ theme.table.field.label }}">{{ labels.uuid }}</td>
                     <td>{{ route.uuid }}</td>
                 </tr> 
                 <tr>
-                    <td class="right aligned">{{ labels.status }}</td>
+                    <td class="{{ theme.table.field.label }}">{{ labels.status }}</td>
                     <td>
-                        {{ component('semantic~status.icon',{ status: route.status }) }}     
+                        {{ component('system:admin.status.icon',{ status: route.status }) }}     
                     </td>
                 </tr>      
                 {% if route.name is not empty %}     
                 <tr>
-                    <td class="right aligned">{{ labels.name }}</td>
+                    <td class="{{ theme.table.field.label }}">{{ labels.name }}</td>
                     <td>{{ route.name }}</td>
                 </tr>  
                 {% endif %}
                 <tr>
-                    <td class="right aligned">{{ labels.type }}</td>
+                    <td class="{{ theme.table.field.label }}">{{ labels.type }}</td>
                     <td>
-                        {{ component('semantic~labels.route-type',{ type: route.type, class: 'basic' }) }}         
+                        {{ component('system:admin.labels.route-type',{ type: route.type, class: 'basic' }) }}         
                     </td>
                 </tr>  
                 <tr>
-                    <td class="right aligned">{{ labels.method }}</td>
+                    <td class="{{ theme.table.field.label }}">{{ labels.method }}</td>
                     <td>{{ route.method }}</td>
                 </tr>   
                 <tr>
-                    <td class="right aligned">{{ labels.pattern }}</td>
+                    <td class="{{ theme.table.field.label }}">{{ labels.pattern }}</td>
                     <td>{{ route.pattern }}</td>
                 </tr>   
                 <tr>
-                    <td class="right aligned">{{ labels.handler }}</td>
-                    <td>{{ route.handler_class }} : {{ route.handler_method }}</td>
+                    <td class="{{ theme.table.field.label }}">{{ labels.handler }}</td>
+                    <td>
+                        <div class="text-xs">
+                            {{ route.handler_class }}
+                        </div>
+                        <div class="text-xs font-bold">
+                            Method
+                        </div>
+                        <div class="badge badge-sm badge-outline">
+                            {{ route.handler_method }}
+                        </div>                      
+                    </td>
                 </tr>  
                 <tr>
-                    <td class="right aligned">{{ labels.extension }}</td>
+                    <td class="{{ theme.table.field.label }}">{{ labels.extension }}</td>
                     <td>{{ route.extension_name }}</td>
                 </tr>  
                 {% if route.redirect_url is not empty %}      
                 <tr>
-                    <td class="right aligned">{{ labels.redirect }}</td>
+                    <td class="{{ theme.table.field.label }}">{{ labels.redirect }}</td>
                     <td>{{ route.redirect_url }}</td>
                 </tr>   
                 {% endif %}
                 <tr>
-                    <td class="right aligned">{{ labels.auth }}</td>
+                    <td class="{{ theme.table.field.label }}">{{ labels.auth }}</td>
                     <td>                  
                         {% if auth_names is iterable %}
                             {% for item in auth_names %}
-                                <div class="ui tiny primary basic label">{{ item }}</div>
+                                <div class="badge badge-xs badge-outline">{{ item }}</div>
                             {% endfor %}
                         {% else %}
-                            <div class="ui primary basic label">{{ auth_names|default('none') }}</div>
+                            <div class="badge badge-outline badge-primary">{{ auth_names|default('none') }}</div>
                         {% endif %}     
                     </td>
                 </tr>   
                 {% if route.middlewares is not empty %}     
                 <tr>
-                    <td class="right aligned">{{ labels.middleware }}</td>
+                    <td class="{{ theme.table.field.label }}">{{ labels.middleware }}</td>
                     <td>
                         {% set middlewares = route.middlewares|jsonDecode(false) %}
                         {% for middleware in middlewares %}
@@ -82,7 +92,7 @@
                 {% endif %}
                 {% if route.page_name is not empty %}   
                 <tr>
-                    <td class="right aligned">{{ labels.page }}</td>
+                    <td class="{{ theme.table.field.label }}">{{ labels.page }}</td>
                     <td>{{ route.page_name }}</td>
                 </tr> 
                 {% endif %}

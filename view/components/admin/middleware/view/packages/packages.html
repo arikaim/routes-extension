@@ -1,10 +1,18 @@
-<div>
-    <span class="font-bold px-1">{{ labels.extension }}</span>
-    {{ component("system:admin.extensions.dropdown",{ class: 'mini', id: 'extensions' }) }} 
-    <span class="font-bold px-1">{{ labels.module }}</span>
-    {{ component("system:admin.modules.dropdown",{ class: 'mini', id: 'modules'}) }}  
+<div class="{{ theme.panel }}">
+    <div class="font-bold">{{ labels.extension }}</div>
+    {{  component("system:admin.extensions.dropdown",{ 
+            size: 'select-sm', 
+            id: 'extensions' 
+        }) 
+    }} 
+    <div class="mt-4 font-bold">{{ labels.module }}</div>
+    {{  component("system:admin.modules.dropdown",{ 
+            size: 'select-sm', 
+            id: 'modules'
+        }) 
+    }}  
 </div>
-<div class="ui divider"></div>
+
 <div
     route-uuid="{{ route_uuid }}"
     middleware-type="{{ type|default('global') }}"

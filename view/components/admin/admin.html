@@ -1,9 +1,22 @@
-{{  component('semantic~tabs',{ 
+{{  component('system:admin.tabs',{ 
         items: [ 
-            { id: 'routes_button', title: labels.routes, component: 'routes::admin.routes.view', icon: 'route', active: true },     
-            { id: 'middleware_button', title: labels.middleware, component: 'routes::admin.middleware.view', icon: 'layer group' },       
+            { 
+                title: labels.routes, 
+                component: 'routes::admin.routes.view', 
+                svg_icon: 'icons~code',
+                active: true 
+            },     
+            { 
+                title: labels.middleware, 
+                component: 'routes::admin.middleware.view', 
+                svg_icon: 'icons~code' 
+            },       
         ],
-        menu: { extension: 'routes' },
-        content: { component: 'routes::admin.routes.view'} 
+        menu: { 
+            extension: 'routes' 
+        },
+        content: { 
+            component: 'routes::admin.routes.view'
+        } 
     })
 }}

@@ -4,5 +4,11 @@
         "status": "Status",
         "type": "Type",
         "extension": "Extension"       
+    },
+    "columns": {
+        "status": "Status",
+        "path": "Path",
+        "type": "Type",
+        "method": "Method"       
     }
 }

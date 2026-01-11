@@ -1,25 +1,22 @@
 {% set middlewares = getConfigOption('middleware') %}
-<div class="ui list divided">
-    {% if middlewares|length == 0 %}
-    <div class="item">
-        {{ labels.empty }}
-    </div>
-    {% endif %}
+ {% if middlewares|length == 0 %}
+    {{ component('system:amdin.alert.info',{ message: labels.empty }) }}
+    {% error '' %}
+{% endif %}
 
-    {% for item in middlewares %}
-    <div class="item">
-        <div class="content">
+<div class="{{ theme.list.default }}">
+    {% for item in middlewares %}      
+        <div class="flex flex-row items-center">
             <button 
-                class="ui mini basic icon button uninstall-middlware" 
+                class="{{ theme.buttons.icon }} uninstall-middlware" 
                 middleware-class="{{ item.handler }}" 
                 title="{{ labels.uninstall }}">
-                <i class="icon orange times"></i>
+                {{ component('icons~close',theme.icons.delete,'svg') }}       
             </button>
-            <span class="pl-2">
-                <i class="icon blue code"></i>
-                {{ item.handler}}
-            </span>           
+            {{ component('icons~code',theme.icons.blue,'svg') }}       
+            <div class="ml-2">               
+                {{ item.handler }}
+            </div>           
         </div>       
-    </div>
     {% endfor %}
 </div>          
